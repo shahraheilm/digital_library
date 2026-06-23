@@ -2,10 +2,8 @@
 // مقصد: ویب سائٹ کا خود (shell) آف لائن بھی کھل جائے۔
 // نوٹ: گوگل ڈرائیو کے شمارہ جات (PDF) انٹرنیٹ کے بغیر نہیں کھلیں گے۔
 
-const CACHE_NAME = "shahrahe-ilm-library-v1";
+const CACHE_NAME = "shahrahe-ilm-library-v2";
 const ASSETS_TO_CACHE = [
-  "./",
-  "./index.html",
   "./manifest.json",
   "./icon-192.png",
   "./icon-512.png"
@@ -33,13 +31,34 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// فیچ: صرف اپنی ہی سائٹ کی درخواستوں کے لیے کیش حکمت عملی۔
-// بیرونی (گوگل ڈرائیو وغیرہ) لنکس کو براہ راست نیٹ ورک پر جانے دیں۔
+// فیچ کی حکمت عملی:
+// - صفحہ (HTML/navigation): ہمیشہ پہلے نیٹ ورک سے تازہ ورژن لائیں،
+//   صرف آف لائن ہونے کی صورت میں کیش سے دکھائیں۔ اس سے نئی اپڈیٹس فوراً نظر آئیں گی۔
+// - باقی اپنی فائلیں (manifest, icons): کیش پہلے، رفتار کے لیے۔
+// - بیرونی (گوگل ڈرائیو وغیرہ) لنکس میں مداخلت نہیں۔
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
 
   if (url.origin !== self.location.origin) {
-    return; // بیرونی درخواستوں میں مداخلت نہیں
+    return;
+  }
+
+  const isNavigation =
+    event.request.mode === "navigate" ||
+    (event.request.method === "GET" &&
+      event.request.headers.get("accept")?.includes("text/html"));
+
+  if (isNavigation) {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+          return response;
+        })
+        .catch(() => caches.match(event.request).then((r) => r || caches.match("./index.html")))
+    );
+    return;
   }
 
   event.respondWith(
@@ -51,7 +70,7 @@ self.addEventListener("fetch", (event) => {
           caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
           return response;
         })
-        .catch(() => caches.match("./index.html"));
+        .catch(() => cached);
     })
   );
 });

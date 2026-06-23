@@ -116,8 +116,8 @@
             color: #fff;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 16px;
+            justify-content: center;
+            gap: 30px;
             flex-wrap: wrap;
         }
 
@@ -133,11 +133,26 @@
             font-weight: 700;
         }
 
+        .hero-cover {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hero-cover img {
+            width: 130px;
+            height: auto;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
         .hero button {
             background: #fff;
             color: var(--brand);
             border: none;
-            padding: 12px 26px;
+            padding: 10px 24px;
             border-radius: 999px;
             font-family: inherit;
             font-size: 15px;
@@ -400,7 +415,10 @@
             <p class="label">تازہ ترین شمارہ</p>
             <p class="issue">جولائی 2025</p>
         </div>
-        <button id="heroBtn" data-src="https://drive.google.com/file/d/1Gqsvv6NdrMxxI7Rez_bK3odV4HW-LWj0/preview" data-view="https://drive.google.com/file/d/1Gqsvv6NdrMxxI7Rez_bK3odV4HW-LWj0/view" data-label="جولائی 2025">ابھی پڑھیں</button>
+        <div class="hero-cover">
+            <img src="latest-cover.jpg" alt="جولائی 2025 کا سرورق" loading="lazy" onerror="this.style.display='none';">
+            <button id="heroBtn" data-src="https://drive.google.com/file/d/1Gqsvv6NdrMxxI7Rez_bK3odV4HW-LWj0/preview" data-view="https://drive.google.com/file/d/1Gqsvv6NdrMxxI7Rez_bK3odV4HW-LWj0/view" data-label="جولائی 2025">ابھی پڑھیں</button>
+        </div>
     </section>
 
     <main>
@@ -701,7 +719,7 @@
 
     <footer>
         <p>جملہ حقوق محفوظ © 2025 شاہراہِ علم</p>
-        <p>تیار کردہ: عبدالسبحان — <a href="tel:9422849645">9422849645</a></p>
+        <p>تیار کردہ: عبدالصبحان — <a href="tel:9422849645">9422849645</a></p>
     </footer>
 
     <div class="modal-overlay" id="readerModal">
@@ -745,6 +763,10 @@
             if (btn) {
                 openReader(btn.dataset.src, btn.dataset.view, btn.dataset.label);
             }
+        });
+
+        document.getElementById("heroBtn").addEventListener("click", function () {
+            openReader(this.dataset.src, this.dataset.view, this.dataset.label);
         });
 
         document.getElementById("modalClose").addEventListener("click", closeReader);

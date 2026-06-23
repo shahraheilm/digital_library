@@ -7,201 +7,345 @@
     <title>ماہنامہ شاہراہِ علم – ڈیجیٹل لائبریری</title>
     <meta name="description" content="ماہنامہ شاہراہِ علم کے تمام شمارہ جات کی ڈیجیٹل لائبریری — سال 2012 سے تا حال، مہینہ وار ترتیب کے ساتھ۔">
 
-    <!-- PWA: مینی فیسٹ اور تھیم -->
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#6a1b9a">
+    <meta name="theme-color" content="#3c1361">
     <link rel="icon" href="favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="icon-192.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="شاہراہِ علم">
 
-    <!-- سوشل شیئرنگ پریویو -->
     <meta property="og:title" content="ماہنامہ شاہراہِ علم – ڈیجیٹل لائبریری">
     <meta property="og:description" content="ماہنامہ شاہراہِ علم کے تمام شمارہ جات ایک ہی جگہ، سال اور مہینہ وار ترتیب کے ساتھ۔">
     <meta property="og:type" content="website">
     <meta property="og:image" content="icon-512.png">
 
-    <!-- اردو نستعلیق فونٹ -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --brand: #4a148c;
+            --brand-dark: #321058;
+            --brand-light: #7b1fa2;
+            --bg: #f7f5fa;
+            --card: #ffffff;
+            --border: #e7e1ee;
+            --text: #2e2240;
+            --text-soft: #6b6080;
+        }
+
+        * { box-sizing: border-box; }
+
         body {
             font-family: "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", serif;
-            background-color: #f9f7fc;
+            background: var(--bg);
             margin: 0;
             padding: 0;
-            color: #3a2d53;
-            line-height: 1.9;
+            color: var(--text);
+            line-height: 2;
         }
 
         header {
-            background: linear-gradient(90deg, #6a1b9a, #8e24aa);
-            color: white;
+            background: linear-gradient(120deg, var(--brand-dark), var(--brand));
+            color: #fff;
             text-align: center;
-            padding: 25px 0;
-            border-bottom: 4px solid #4a148c;
+            padding: 30px 20px 26px;
         }
 
         header h1 {
             margin: 0;
-            font-size: 32px;
+            font-size: 30px;
+            font-weight: 700;
         }
 
-        header p {
-            margin: 5px 0 0;
-            font-size: 18px;
-            font-weight: 300;
+        header p.tagline {
+            margin: 6px 0 0;
+            font-size: 17px;
+            font-weight: 400;
+            opacity: 0.92;
+        }
+
+        header p.org {
+            margin: 10px 0 0;
+            font-size: 13px;
+            font-weight: 400;
+            opacity: 0.75;
+        }
+
+        .toolbar {
+            position: sticky;
+            top: 0;
+            z-index: 60;
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 5%;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            box-shadow: 0 2px 10px rgba(74, 20, 140, 0.06);
+        }
+
+        .toolbar select,
+        .toolbar input {
+            font-family: inherit;
+            font-size: 14px;
+            padding: 9px 14px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text);
+            outline: none;
+        }
+
+        .toolbar select:focus,
+        .toolbar input:focus {
+            border-color: var(--brand-light);
+        }
+
+        .toolbar input {
+            min-width: 220px;
+        }
+
+        .hero {
+            width: 85%;
+            margin: 26px auto 0;
+            background: linear-gradient(120deg, var(--brand), var(--brand-light));
+            border-radius: 16px;
+            padding: 26px 30px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .hero .hero-text p.label {
+            margin: 0 0 4px;
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        .hero .hero-text p.issue {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .hero button {
+            background: #fff;
+            color: var(--brand);
+            border: none;
+            padding: 12px 26px;
+            border-radius: 999px;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.15s ease;
+        }
+
+        .hero button:hover {
+            transform: translateY(-2px);
         }
 
         main {
             width: 85%;
-            margin: 40px auto;
+            margin: 30px auto 50px;
         }
 
         .year-section {
-            background: #fff;
-            padding: 25px;
-            margin-bottom: 35px;
-            border-radius: 15px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-            border-right: 5px solid #7b1fa2;
+            background: var(--card);
+            padding: 22px 25px;
+            margin-bottom: 22px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+        }
+
+        .year-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+            margin-bottom: 16px;
         }
 
         .year-section h2 {
-            margin-top: 0;
-            color: #4a148c;
-            font-size: 24px;
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 5px;
+            margin: 0;
+            color: var(--brand);
+            font-size: 21px;
+        }
+
+        .year-count {
+            font-size: 13px;
+            color: var(--text-soft);
         }
 
         .buttons {
-            margin-top: 15px;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 10px;
-      
         }
 
-        .buttons a {
-            background: linear-gradient(145deg, #7b1fa2, #6a1b9a);
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            font-size: 16px;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-         
+        .issue-btn {
+            font-family: inherit;
+            background: var(--bg);
+            color: var(--brand);
+            border: 1px solid var(--border);
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.18s ease;
         }
 
-        .buttons a:hover {
-            background: linear-gradient(145deg, #6a1b9a, #4a148c);
+        .issue-btn:hover {
+            background: var(--brand);
+            color: #fff;
+            border-color: var(--brand);
             transform: translateY(-2px);
         }
 
+        .issue-btn.disabled {
+            background: transparent;
+            color: #b3a9c4;
+            border: 1px dashed #d8cfe6;
+            cursor: not-allowed;
+        }
+
+        .issue-btn.disabled:hover {
+            transform: none;
+            background: transparent;
+            color: #b3a9c4;
+            border-color: #d8cfe6;
+        }
+
         footer {
-            background: #e0d7ee;
+            background: var(--brand-dark);
+            color: #e6dcf3;
             text-align: center;
-            padding: 20px;
-            border-top: 2px solid #6a1b9a;
-            font-size: 15px;
-            border-radius: 15px 15px 0 0;
+            padding: 22px 20px;
+            font-size: 14px;
+        }
+
+        footer p {
+            margin: 4px 0;
         }
 
         footer a {
-            color: #4a148c;
+            color: #fff;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 700;
         }
 
         footer a:hover {
             text-decoration: underline;
         }
 
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 24px;
-            }
-
-            main {
-                width: 95%;
-            }
-
-            .buttons a, .buttons span.disabled {
-                font-size: 14px;
-                padding: 8px 12px;
-            }
-        }
-
-        /* غیر دستیاب شمارہ (لنک ابھی شامل نہیں ہوا) */
-        .buttons span.disabled {
-            background: #e6e1ee;
-            color: #9b8fb3;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: not-allowed;
-            box-shadow: none;
-            border: 1px dashed #c3b8d6;
-        }
-
-        /* سال بہ سال فوری رسائی بار */
-        .year-nav {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            background: #4a148c;
-            padding: 10px 5%;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
+        /* ایمبیڈڈ ریڈر موڈل */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 10, 30, 0.6);
+            display: none;
+            align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            z-index: 200;
+            padding: 16px;
         }
 
-        .year-nav a {
-            color: #f3e9ff;
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal-box {
+            background: #fff;
+            border-radius: 14px;
+            width: min(820px, 100%);
+            max-height: 92vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .modal-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .modal-head span {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--brand);
+        }
+
+        .modal-head button {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            font-size: 16px;
+            cursor: pointer;
+            color: var(--text-soft);
+        }
+
+        .modal-frame-wrap {
+            flex: 1;
+            min-height: 60vh;
+        }
+
+        .modal-frame-wrap iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 60vh;
+            border: 0;
+        }
+
+        .modal-foot {
+            padding: 10px 18px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .modal-foot a {
+            color: var(--brand);
             text-decoration: none;
-            font-size: 14px;
-            padding: 5px 10px;
-            border-radius: 4px;
-            background: rgba(255,255,255,0.08);
-            transition: background 0.2s ease;
+            font-weight: 700;
         }
 
-        .year-nav a:hover, .year-nav a:focus {
-            background: rgba(255,255,255,0.25);
-        }
-
-        /* انسٹال ایپ بٹن */
         #installBtn {
             display: none;
             position: fixed;
             left: 20px;
             bottom: 20px;
-            background: linear-gradient(145deg, #7b1fa2, #4a148c);
+            background: var(--brand);
             color: #fff;
             border: none;
             padding: 12px 18px;
-            border-radius: 30px;
+            border-radius: 999px;
             font-family: inherit;
             font-size: 15px;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
             z-index: 100;
         }
 
-        /* اوپر جانے کا بٹن */
         #topBtn {
             display: none;
             position: fixed;
             right: 20px;
             bottom: 20px;
-            background: #7b1fa2;
+            background: var(--brand-light);
             color: #fff;
             border: none;
             width: 44px;
@@ -209,12 +353,16 @@
             border-radius: 50%;
             font-size: 20px;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
             z-index: 100;
         }
 
-        footer p {
-            margin: 4px 0;
+        @media (max-width: 600px) {
+            header h1 { font-size: 23px; }
+            main, .hero { width: 94%; }
+            .hero { flex-direction: column; text-align: center; }
+            .issue-btn { font-size: 14px; padding: 9px 14px; }
+            .toolbar input { min-width: 0; flex: 1; }
         }
     </style>
 </head>
@@ -222,340 +370,439 @@
 <body>
     <header>
         <h1>ماہنامہ شاہراہِ علم</h1>
-        <p>ڈیجیٹل لائبریری</p>
+        <p class="tagline">ڈیجیٹل لائبریری</p>
+        <p class="org">جامعہ اسلامیہ اشاعت العلوم، اکل کوا</p>
     </header>
 
-    <nav class="year-nav" aria-label="سال کے حساب سے فوری رسائی">
-        <a href="#y2012">2012</a>
-        <a href="#y2013">2013</a>
-        <a href="#y2014">2014</a>
-        <a href="#y2015">2015</a>
-        <a href="#y2016">2016</a>
-        <a href="#y2017">2017</a>
-        <a href="#y2018">2018</a>
-        <a href="#y2019">2019</a>
-        <a href="#y2020">2020</a>
-        <a href="#y2021">2021</a>
-        <a href="#y2022">2022</a>
-        <a href="#y2023">2023</a>
-        <a href="#y2024">2024</a>
-        <a href="#y2025">2025</a>
-    </nav>
+    <div class="toolbar">
+        <select id="yearJump">
+            <option value="">سال منتخب کریں</option>
+        <option value="y2025">2025</option>
+        <option value="y2024">2024</option>
+        <option value="y2023">2023</option>
+        <option value="y2022">2022</option>
+        <option value="y2021">2021</option>
+        <option value="y2020">2020</option>
+        <option value="y2019">2019</option>
+        <option value="y2018">2018</option>
+        <option value="y2017">2017</option>
+        <option value="y2016">2016</option>
+        <option value="y2015">2015</option>
+        <option value="y2014">2014</option>
+        <option value="y2013">2013</option>
+        <option value="y2012">2012</option>
+        </select>
+        <input type="text" id="monthFilter" placeholder="مہینہ تلاش کریں, مثلاً جنوری">
+    </div>
+
+    <section class="hero">
+        <div class="hero-text">
+            <p class="label">تازہ ترین شمارہ</p>
+            <p class="issue">جولائی 2025</p>
+        </div>
+        <button id="heroBtn" data-src="https://drive.google.com/file/d/1Gqsvv6NdrMxxI7Rez_bK3odV4HW-LWj0/preview" data-view="https://drive.google.com/file/d/1Gqsvv6NdrMxxI7Rez_bK3odV4HW-LWj0/view" data-label="جولائی 2025">ابھی پڑھیں</button>
+    </section>
 
     <main>
-          <!-- 2012 -->
     <section class="year-section" id="y2012">
-      <h2>سال 2012</h2>
+      <div class="year-head">
+        <h2>سال 2012</h2>
+        <span class="year-count">12 شمارے دستیاب</span>
+      </div>
       <div class="buttons">
-        <a href="https://drive.google.com/file/d/1bhEDAfcjoI7c55ORRkVOX_xCLqJ1M-A0/view?usp=sharing" target="_blank">جنوری</a>
-        <a href="https://drive.google.com/file/d/1bhEDAfcjoI7c55ORRkVOX_xCLqJ1M-A0/view?usp=sharing" target="_blank">فروری</a>
-        <a href="https://drive.google.com/file/d/12iGMMmptn9f-TW0Y0Hjun3VCq7NhREqH/view?usp=sharing" target="_blank">مارچ</a>
-        <a href="https://drive.google.com/file/d/1iQp-1qFaUEY043gPmUyaPMGpajpthr8K/view?usp=sharing" target="_blank">اپریل</a>
-        <a href="https://drive.google.com/file/d/1iQp-1qFaUEY043gPmUyaPMGpajpthr8K/view?usp=sharing" target="_blank">مئی</a>
-        <a href="https://drive.google.com/file/d/1tCIcEt0bKDNaA_EEHPhWpVub3-FkIJPx/view?usp=sharing" target="_blank">جون</a>
-        <a href="https://drive.google.com/file/d/1tCIcEt0bKDNaA_EEHPhWpVub3-FkIJPx/view?usp=sharing" target="_blank">جولائی</a>
-        <a href="https://drive.google.com/file/d/1tCIcEt0bKDNaA_EEHPhWpVub3-FkIJPx/view?usp=sharing" target="_blank">اگست</a>
-        <a href="https://drive.google.com/file/d/1vRbBZfoquLBH3Jm6AdSMiBaCVTF9bslw/view?usp=sharing" target="_blank">ستمبر</a>
-        <a href="https://drive.google.com/file/d/1vRbBZfoquLBH3Jm6AdSMiBaCVTF9bslw/view?usp=sharing" target="_blank">اکتوبر</a>
-        <a href="https://drive.google.com/file/d/1Di5x_5sYZGw_92a5j9jobWNxcgmegvEj/view?usp=sharing" target="_blank">نومبر</a>
-        <a href="https://drive.google.com/file/d/10lBkB5Lw9oGqjh3gn0lYXYt-Z5ZYTGFB/view?usp=sharing" target="_blank">دسمبر</a>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1bhEDAfcjoI7c55ORRkVOX_xCLqJ1M-A0/preview" data-view="https://drive.google.com/file/d/1bhEDAfcjoI7c55ORRkVOX_xCLqJ1M-A0/view" data-label="جنوری 2012">جنوری</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1bhEDAfcjoI7c55ORRkVOX_xCLqJ1M-A0/preview" data-view="https://drive.google.com/file/d/1bhEDAfcjoI7c55ORRkVOX_xCLqJ1M-A0/view" data-label="فروری 2012">فروری</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/12iGMMmptn9f-TW0Y0Hjun3VCq7NhREqH/preview" data-view="https://drive.google.com/file/d/12iGMMmptn9f-TW0Y0Hjun3VCq7NhREqH/view" data-label="مارچ 2012">مارچ</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1iQp-1qFaUEY043gPmUyaPMGpajpthr8K/preview" data-view="https://drive.google.com/file/d/1iQp-1qFaUEY043gPmUyaPMGpajpthr8K/view" data-label="اپریل 2012">اپریل</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1iQp-1qFaUEY043gPmUyaPMGpajpthr8K/preview" data-view="https://drive.google.com/file/d/1iQp-1qFaUEY043gPmUyaPMGpajpthr8K/view" data-label="مئی 2012">مئی</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1tCIcEt0bKDNaA_EEHPhWpVub3-FkIJPx/preview" data-view="https://drive.google.com/file/d/1tCIcEt0bKDNaA_EEHPhWpVub3-FkIJPx/view" data-label="جون 2012">جون</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1tCIcEt0bKDNaA_EEHPhWpVub3-FkIJPx/preview" data-view="https://drive.google.com/file/d/1tCIcEt0bKDNaA_EEHPhWpVub3-FkIJPx/view" data-label="جولائی 2012">جولائی</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1tCIcEt0bKDNaA_EEHPhWpVub3-FkIJPx/preview" data-view="https://drive.google.com/file/d/1tCIcEt0bKDNaA_EEHPhWpVub3-FkIJPx/view" data-label="اگست 2012">اگست</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1vRbBZfoquLBH3Jm6AdSMiBaCVTF9bslw/preview" data-view="https://drive.google.com/file/d/1vRbBZfoquLBH3Jm6AdSMiBaCVTF9bslw/view" data-label="ستمبر 2012">ستمبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1vRbBZfoquLBH3Jm6AdSMiBaCVTF9bslw/preview" data-view="https://drive.google.com/file/d/1vRbBZfoquLBH3Jm6AdSMiBaCVTF9bslw/view" data-label="اکتوبر 2012">اکتوبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1Di5x_5sYZGw_92a5j9jobWNxcgmegvEj/preview" data-view="https://drive.google.com/file/d/1Di5x_5sYZGw_92a5j9jobWNxcgmegvEj/view" data-label="نومبر 2012">نومبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/10lBkB5Lw9oGqjh3gn0lYXYt-Z5ZYTGFB/preview" data-view="https://drive.google.com/file/d/10lBkB5Lw9oGqjh3gn0lYXYt-Z5ZYTGFB/view" data-label="دسمبر 2012">دسمبر</button>
       </div>
     </section>
 
-          <!-- 2013 -->
     <section class="year-section" id="y2013">
-      <h2>سال 2013</h2>
+      <div class="year-head">
+        <h2>سال 2013</h2>
+        <span class="year-count">12 شمارے دستیاب</span>
+      </div>
       <div class="buttons">
-        <a href="https://drive.google.com/file/d/1MtJsubXA26rg2sEVJEhb95jr4SApfJhz/view?usp=sharing" target="_blank">جنوری</a>
-        <a href="https://drive.google.com/file/d/1Pc0sPjNBQZKUumsVKuHksoVyNn4IRMpr/view?usp=sharing" target="_blank">فروری</a>
-        <a href="https://drive.google.com/file/d/17kkAjKt62de31c1BiCB5YRwvYFybY4v8/view?usp=sharing" target="_blank">مارچ</a>
-        <a href="https://drive.google.com/file/d/1HR41JAy8asyxCBoumXt9UeCBI_Npvkcw/view?usp=sharing" target="_blank">اپریل</a>
-        <a href="https://drive.google.com/file/d/1nVt6-M-U9A_57HSeKwFKHPfsMeYqOL34/view?usp=sharing" target="_blank">مئی</a>
-        <a href="https://drive.google.com/file/d/1dxs2n8_Hf9l5fuAD_yz4SkaYNmdP91z6/view?usp=sharing" target="_blank">جون</a>
-        <a href="https://drive.google.com/file/d/1K5SCnT3UXNBW5pISBnFSmvK-ymAdZhje/view?usp=sharing" target="_blank">جولائی</a>
-        <a href="https://drive.google.com/file/d/1KeSkVxYtVNw-7Q_38qEXUHuX1ePyb9DL/view?usp=sharing" target="_blank">اگست</a>
-        <a href="https://drive.google.com/file/d/1KD09BQ9p4y_uUJTlRzBJk5Wyw8C9m2Nn/view?usp=sharing" target="_blank">ستمبر</a>
-        <a href="https://drive.google.com/file/d/1qjXPVYQzV8a9F5p8wmrIfZbk1GLTlvlc/view?usp=sharing" target="_blank">اکتوبر</a>
-        <a href="https://drive.google.com/file/d/1N79Ntgr45i0NE_L3ws4RDJwLQsnRWEK7/view?usp=sharing" target="_blank">نومبر</a>
-        <a href="https://drive.google.com/file/d/1N79Ntgr45i0NE_L3ws4RDJwLQsnRWEK7/view?usp=sharing" target="_blank">دسمبر</a>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1MtJsubXA26rg2sEVJEhb95jr4SApfJhz/preview" data-view="https://drive.google.com/file/d/1MtJsubXA26rg2sEVJEhb95jr4SApfJhz/view" data-label="جنوری 2013">جنوری</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1Pc0sPjNBQZKUumsVKuHksoVyNn4IRMpr/preview" data-view="https://drive.google.com/file/d/1Pc0sPjNBQZKUumsVKuHksoVyNn4IRMpr/view" data-label="فروری 2013">فروری</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/17kkAjKt62de31c1BiCB5YRwvYFybY4v8/preview" data-view="https://drive.google.com/file/d/17kkAjKt62de31c1BiCB5YRwvYFybY4v8/view" data-label="مارچ 2013">مارچ</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1HR41JAy8asyxCBoumXt9UeCBI_Npvkcw/preview" data-view="https://drive.google.com/file/d/1HR41JAy8asyxCBoumXt9UeCBI_Npvkcw/view" data-label="اپریل 2013">اپریل</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1nVt6-M-U9A_57HSeKwFKHPfsMeYqOL34/preview" data-view="https://drive.google.com/file/d/1nVt6-M-U9A_57HSeKwFKHPfsMeYqOL34/view" data-label="مئی 2013">مئی</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1dxs2n8_Hf9l5fuAD_yz4SkaYNmdP91z6/preview" data-view="https://drive.google.com/file/d/1dxs2n8_Hf9l5fuAD_yz4SkaYNmdP91z6/view" data-label="جون 2013">جون</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1K5SCnT3UXNBW5pISBnFSmvK-ymAdZhje/preview" data-view="https://drive.google.com/file/d/1K5SCnT3UXNBW5pISBnFSmvK-ymAdZhje/view" data-label="جولائی 2013">جولائی</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1KeSkVxYtVNw-7Q_38qEXUHuX1ePyb9DL/preview" data-view="https://drive.google.com/file/d/1KeSkVxYtVNw-7Q_38qEXUHuX1ePyb9DL/view" data-label="اگست 2013">اگست</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1KD09BQ9p4y_uUJTlRzBJk5Wyw8C9m2Nn/preview" data-view="https://drive.google.com/file/d/1KD09BQ9p4y_uUJTlRzBJk5Wyw8C9m2Nn/view" data-label="ستمبر 2013">ستمبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1qjXPVYQzV8a9F5p8wmrIfZbk1GLTlvlc/preview" data-view="https://drive.google.com/file/d/1qjXPVYQzV8a9F5p8wmrIfZbk1GLTlvlc/view" data-label="اکتوبر 2013">اکتوبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1N79Ntgr45i0NE_L3ws4RDJwLQsnRWEK7/preview" data-view="https://drive.google.com/file/d/1N79Ntgr45i0NE_L3ws4RDJwLQsnRWEK7/view" data-label="نومبر 2013">نومبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1N79Ntgr45i0NE_L3ws4RDJwLQsnRWEK7/preview" data-view="https://drive.google.com/file/d/1N79Ntgr45i0NE_L3ws4RDJwLQsnRWEK7/view" data-label="دسمبر 2013">دسمبر</button>
       </div>
     </section>
 
-          <!-- 2014 -->
     <section class="year-section" id="y2014">
-      <h2>سال 2014</h2>
+      <div class="year-head">
+        <h2>سال 2014</h2>
+        <span class="year-count">12 شمارے دستیاب</span>
+      </div>
       <div class="buttons">
-        <a href="https://drive.google.com/file/d/1FeEc1T2rC2PHcdIZ0O0sNwOD24tEB-TR/view?usp=sharing" target="_blank">جنوری</a>
-        <a href="https://drive.google.com/file/d/1H27aBuIv0ZX5ripEcbePbJkfx_39V8D2/view?usp=sharing" target="_blank">فروری</a>
-        <a href="https://drive.google.com/file/d/1CBjFBuPboSY-jUzLSkFH7YfGD2rJIvOM/view?usp=sharing" target="_blank">مارچ</a>
-        <a href="https://drive.google.com/file/d/1D2IB1SXNOA0FXjJkCJDCDv8XmlHBaZ1a/view?usp=sharing" target="_blank">اپریل</a>
-        <a href="https://drive.google.com/file/d/1utxxF6ps27oTTAa2b6WyP5z7SWnO5sKS/view?usp=sharing" target="_blank">مئی</a>
-        <a href="https://drive.google.com/file/d/1zLF22_ZYwp-8xVQRkHsu0G734z4QJzJy/view?usp=sharing" target="_blank">جون</a>
-        <a href="https://drive.google.com/file/d/17u1vhGps_gnC6hwECItsvWjf7vjuz52Q/view?usp=sharing" target="_blank">جولائی</a>
-        <a href="https://drive.google.com/file/d/1S_rv0VHiI16fglWXGsd9uoB8kWB8u5SI/view?usp=sharing" target="_blank">اگست</a>
-        <a href="https://drive.google.com/file/d/120nN6RrNqm6mA5bxrpK1SarsPdX3-j5h/view?usp=sharing" target="_blank">ستمبر</a>
-        <a href="https://drive.google.com/file/d/1PYAAsfjlOt3UZkyw1Jby0XTyqqLUr8r2/view?usp=sharing" target="_blank">اکتوبر</a>
-        <a href="https://drive.google.com/file/d/1eIU7Rh63wQD4TwXJr6E99AqbxJKAhURj/view?usp=sharing" target="_blank">نومبر</a>
-        <a href="https://drive.google.com/file/d/1tq7mKZmSw7YbgmUm6GXesu2VgAkELfm3/view?usp=sharing" target="_blank">دسمبر</a>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1FeEc1T2rC2PHcdIZ0O0sNwOD24tEB-TR/preview" data-view="https://drive.google.com/file/d/1FeEc1T2rC2PHcdIZ0O0sNwOD24tEB-TR/view" data-label="جنوری 2014">جنوری</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1H27aBuIv0ZX5ripEcbePbJkfx_39V8D2/preview" data-view="https://drive.google.com/file/d/1H27aBuIv0ZX5ripEcbePbJkfx_39V8D2/view" data-label="فروری 2014">فروری</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1CBjFBuPboSY-jUzLSkFH7YfGD2rJIvOM/preview" data-view="https://drive.google.com/file/d/1CBjFBuPboSY-jUzLSkFH7YfGD2rJIvOM/view" data-label="مارچ 2014">مارچ</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1D2IB1SXNOA0FXjJkCJDCDv8XmlHBaZ1a/preview" data-view="https://drive.google.com/file/d/1D2IB1SXNOA0FXjJkCJDCDv8XmlHBaZ1a/view" data-label="اپریل 2014">اپریل</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1utxxF6ps27oTTAa2b6WyP5z7SWnO5sKS/preview" data-view="https://drive.google.com/file/d/1utxxF6ps27oTTAa2b6WyP5z7SWnO5sKS/view" data-label="مئی 2014">مئی</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1zLF22_ZYwp-8xVQRkHsu0G734z4QJzJy/preview" data-view="https://drive.google.com/file/d/1zLF22_ZYwp-8xVQRkHsu0G734z4QJzJy/view" data-label="جون 2014">جون</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/17u1vhGps_gnC6hwECItsvWjf7vjuz52Q/preview" data-view="https://drive.google.com/file/d/17u1vhGps_gnC6hwECItsvWjf7vjuz52Q/view" data-label="جولائی 2014">جولائی</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1S_rv0VHiI16fglWXGsd9uoB8kWB8u5SI/preview" data-view="https://drive.google.com/file/d/1S_rv0VHiI16fglWXGsd9uoB8kWB8u5SI/view" data-label="اگست 2014">اگست</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/120nN6RrNqm6mA5bxrpK1SarsPdX3-j5h/preview" data-view="https://drive.google.com/file/d/120nN6RrNqm6mA5bxrpK1SarsPdX3-j5h/view" data-label="ستمبر 2014">ستمبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1PYAAsfjlOt3UZkyw1Jby0XTyqqLUr8r2/preview" data-view="https://drive.google.com/file/d/1PYAAsfjlOt3UZkyw1Jby0XTyqqLUr8r2/view" data-label="اکتوبر 2014">اکتوبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1eIU7Rh63wQD4TwXJr6E99AqbxJKAhURj/preview" data-view="https://drive.google.com/file/d/1eIU7Rh63wQD4TwXJr6E99AqbxJKAhURj/view" data-label="نومبر 2014">نومبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1tq7mKZmSw7YbgmUm6GXesu2VgAkELfm3/preview" data-view="https://drive.google.com/file/d/1tq7mKZmSw7YbgmUm6GXesu2VgAkELfm3/view" data-label="دسمبر 2014">دسمبر</button>
       </div>
     </section>
 
-          <!-- 2015-->
     <section class="year-section" id="y2015">
-      <h2>سال 2015</h2>
+      <div class="year-head">
+        <h2>سال 2015</h2>
+        <span class="year-count">12 شمارے دستیاب</span>
+      </div>
       <div class="buttons">
-        <a href="https://drive.google.com/file/d/1SCrz-7iM2gSuG_TfL6SSywdAH_E6azeL/view?usp=sharing" target="_blank">جنوری</a>
-        <a href="https://drive.google.com/file/d/1pHNQSRYN3iSqDOOnOiL9oMKyerGudQS4/view?usp=sharing" target="_blank">فروری</a>
-        <a href="https://drive.google.com/file/d/1A_2zyw6e4P5EDX7qdBjtr9wLHuvXh604/view?usp=sharing" target="_blank">مارچ</a>
-        <a href="https://drive.google.com/file/d/1FgAMc8qQQivhghi_b8CtXrUI9Ho_k1QT/view?usp=sharing" target="_blank">اپریل</a>
-        <a href="https://drive.google.com/file/d/1KIMCzObv1rFa_5ANlgoUgMOghFs_rCkC/view?usp=sharing" target="_blank">مئی</a>
-        <a href="https://drive.google.com/file/d/19-C_v992G4HD_QfXs8qMFU8dTFZNc6Ur/view?usp=sharing" target="_blank">جون</a>
-        <a href="https://drive.google.com/file/d/19-C_v992G4HD_QfXs8qMFU8dTFZNc6Ur/view?usp=sharing" target="_blank">جولائی</a>
-        <a href="https://drive.google.com/file/d/1stMXcW1bfPf239dco1XSflM3Vr-mrcn3/view?usp=sharing" target="_blank">اگست</a>
-        <a href="https://drive.google.com/file/d/1KKcaJKZ90z5U7UfPuI2E0n_scsYeehs0/view?usp=sharing" target="_blank">ستمبر</a>
-        <a href="https://drive.google.com/file/d/1BuNe-_ofttP6l3SrVkOEyMiKzzmmc2Fz/view?usp=sharing" target="_blank">اکتوبر</a>
-        <a href="https://drive.google.com/file/d/1eAcSIwNQx89R3uwyu7F5jJs-vGhmbZrS/view?usp=sharing" target="_blank">نومبر</a>
-        <a href="https://drive.google.com/file/d/1atfLetLPJjeYX7c9OfhnAoLBRD9F5V5u/view?usp=sharing" target="_blank">دسمبر</a>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1SCrz-7iM2gSuG_TfL6SSywdAH_E6azeL/preview" data-view="https://drive.google.com/file/d/1SCrz-7iM2gSuG_TfL6SSywdAH_E6azeL/view" data-label="جنوری 2015">جنوری</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1pHNQSRYN3iSqDOOnOiL9oMKyerGudQS4/preview" data-view="https://drive.google.com/file/d/1pHNQSRYN3iSqDOOnOiL9oMKyerGudQS4/view" data-label="فروری 2015">فروری</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1A_2zyw6e4P5EDX7qdBjtr9wLHuvXh604/preview" data-view="https://drive.google.com/file/d/1A_2zyw6e4P5EDX7qdBjtr9wLHuvXh604/view" data-label="مارچ 2015">مارچ</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1FgAMc8qQQivhghi_b8CtXrUI9Ho_k1QT/preview" data-view="https://drive.google.com/file/d/1FgAMc8qQQivhghi_b8CtXrUI9Ho_k1QT/view" data-label="اپریل 2015">اپریل</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1KIMCzObv1rFa_5ANlgoUgMOghFs_rCkC/preview" data-view="https://drive.google.com/file/d/1KIMCzObv1rFa_5ANlgoUgMOghFs_rCkC/view" data-label="مئی 2015">مئی</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/19-C_v992G4HD_QfXs8qMFU8dTFZNc6Ur/preview" data-view="https://drive.google.com/file/d/19-C_v992G4HD_QfXs8qMFU8dTFZNc6Ur/view" data-label="جون 2015">جون</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/19-C_v992G4HD_QfXs8qMFU8dTFZNc6Ur/preview" data-view="https://drive.google.com/file/d/19-C_v992G4HD_QfXs8qMFU8dTFZNc6Ur/view" data-label="جولائی 2015">جولائی</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1stMXcW1bfPf239dco1XSflM3Vr-mrcn3/preview" data-view="https://drive.google.com/file/d/1stMXcW1bfPf239dco1XSflM3Vr-mrcn3/view" data-label="اگست 2015">اگست</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1KKcaJKZ90z5U7UfPuI2E0n_scsYeehs0/preview" data-view="https://drive.google.com/file/d/1KKcaJKZ90z5U7UfPuI2E0n_scsYeehs0/view" data-label="ستمبر 2015">ستمبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1BuNe-_ofttP6l3SrVkOEyMiKzzmmc2Fz/preview" data-view="https://drive.google.com/file/d/1BuNe-_ofttP6l3SrVkOEyMiKzzmmc2Fz/view" data-label="اکتوبر 2015">اکتوبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1eAcSIwNQx89R3uwyu7F5jJs-vGhmbZrS/preview" data-view="https://drive.google.com/file/d/1eAcSIwNQx89R3uwyu7F5jJs-vGhmbZrS/view" data-label="نومبر 2015">نومبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1atfLetLPJjeYX7c9OfhnAoLBRD9F5V5u/preview" data-view="https://drive.google.com/file/d/1atfLetLPJjeYX7c9OfhnAoLBRD9F5V5u/view" data-label="دسمبر 2015">دسمبر</button>
       </div>
     </section>
 
-          <!-- 2016 -->
     <section class="year-section" id="y2016">
-      <h2>سال 2016</h2>
+      <div class="year-head">
+        <h2>سال 2016</h2>
+        <span class="year-count">12 شمارے دستیاب</span>
+      </div>
       <div class="buttons">
-        <a href="https://drive.google.com/file/d/1h4HDV95-8YL6kq6mgsT30YYKhvDdsbpZ/view?usp=sharing" target="_blank">جنوری</a>
-        <a href="https://drive.google.com/file/d/1nx2Fh7oqwbj0gkMboLWp2tprfLd2FQzn/view?usp=sharing" target="_blank">فروری</a>
-        <a href="https://drive.google.com/file/d/1nx2Fh7oqwbj0gkMboLWp2tprfLd2FQzn/view?usp=sharing" target="_blank">مارچ</a>
-        <a href="https://drive.google.com/file/d/18zPasS4b47JMY58y02xpJx1DHpUhJHZu/view?usp=sharing" target="_blank">اپریل</a>
-        <a href="https://drive.google.com/file/d/1x9tC-GLO7Zys4CiEwwmSQq2GjDOiiPb8/view?usp=sharing" target="_blank">مئی</a>
-        <a href="https://drive.google.com/file/d/1ifNf7od8F85_w4ROdFx5WqfdyjqD6pPe/view?usp=sharing" target="_blank">جون</a>
-        <a href="https://drive.google.com/file/d/1ifNf7od8F85_w4ROdFx5WqfdyjqD6pPe/view?usp=sharing" target="_blank">جولائی</a>
-        <a href="https://drive.google.com/file/d/1ifNf7od8F85_w4ROdFx5WqfdyjqD6pPe/view?usp=sharing" target="_blank">اگست</a>
-        <a href="https://drive.google.com/file/d/1fGY-uq7KePBDtx7Pr8fgijr2MaUNElei/view?usp=sharing" target="_blank">ستمبر</a>
-        <a href="https://drive.google.com/file/d/1du0c0pTQjwc45lIrY9YNnJBwWUR77nA6/view?usp=sharing" target="_blank">اکتوبر</a>
-        <a href="https://drive.google.com/file/d/1C9sKIb4gYR8APmsli3L2eZlzHVVkiRcj/view?usp=sharing" target="_blank">نومبر</a>
-        <a href="https://drive.google.com/file/d/1uSaKLwyGochoepsFBWO_Tbtlh77GzFQj/view?usp=sharing" target="_blank">دسمبر</a>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1h4HDV95-8YL6kq6mgsT30YYKhvDdsbpZ/preview" data-view="https://drive.google.com/file/d/1h4HDV95-8YL6kq6mgsT30YYKhvDdsbpZ/view" data-label="جنوری 2016">جنوری</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1nx2Fh7oqwbj0gkMboLWp2tprfLd2FQzn/preview" data-view="https://drive.google.com/file/d/1nx2Fh7oqwbj0gkMboLWp2tprfLd2FQzn/view" data-label="فروری 2016">فروری</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1nx2Fh7oqwbj0gkMboLWp2tprfLd2FQzn/preview" data-view="https://drive.google.com/file/d/1nx2Fh7oqwbj0gkMboLWp2tprfLd2FQzn/view" data-label="مارچ 2016">مارچ</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/18zPasS4b47JMY58y02xpJx1DHpUhJHZu/preview" data-view="https://drive.google.com/file/d/18zPasS4b47JMY58y02xpJx1DHpUhJHZu/view" data-label="اپریل 2016">اپریل</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1x9tC-GLO7Zys4CiEwwmSQq2GjDOiiPb8/preview" data-view="https://drive.google.com/file/d/1x9tC-GLO7Zys4CiEwwmSQq2GjDOiiPb8/view" data-label="مئی 2016">مئی</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1ifNf7od8F85_w4ROdFx5WqfdyjqD6pPe/preview" data-view="https://drive.google.com/file/d/1ifNf7od8F85_w4ROdFx5WqfdyjqD6pPe/view" data-label="جون 2016">جون</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1ifNf7od8F85_w4ROdFx5WqfdyjqD6pPe/preview" data-view="https://drive.google.com/file/d/1ifNf7od8F85_w4ROdFx5WqfdyjqD6pPe/view" data-label="جولائی 2016">جولائی</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1ifNf7od8F85_w4ROdFx5WqfdyjqD6pPe/preview" data-view="https://drive.google.com/file/d/1ifNf7od8F85_w4ROdFx5WqfdyjqD6pPe/view" data-label="اگست 2016">اگست</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1fGY-uq7KePBDtx7Pr8fgijr2MaUNElei/preview" data-view="https://drive.google.com/file/d/1fGY-uq7KePBDtx7Pr8fgijr2MaUNElei/view" data-label="ستمبر 2016">ستمبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1du0c0pTQjwc45lIrY9YNnJBwWUR77nA6/preview" data-view="https://drive.google.com/file/d/1du0c0pTQjwc45lIrY9YNnJBwWUR77nA6/view" data-label="اکتوبر 2016">اکتوبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1C9sKIb4gYR8APmsli3L2eZlzHVVkiRcj/preview" data-view="https://drive.google.com/file/d/1C9sKIb4gYR8APmsli3L2eZlzHVVkiRcj/view" data-label="نومبر 2016">نومبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1uSaKLwyGochoepsFBWO_Tbtlh77GzFQj/preview" data-view="https://drive.google.com/file/d/1uSaKLwyGochoepsFBWO_Tbtlh77GzFQj/view" data-label="دسمبر 2016">دسمبر</button>
       </div>
     </section>
 
-          <!-- 2017 -->
     <section class="year-section" id="y2017">
-      <h2>سال 2017</h2>
+      <div class="year-head">
+        <h2>سال 2017</h2>
+        <span class="year-count">12 شمارے دستیاب</span>
+      </div>
       <div class="buttons">
-        <a href="https://drive.google.com/file/d/1zraCXGIP63tUAIOTJztjYzrR0QlAbXYu/view?usp=sharing" target="_blank">جنوری</a>
-        <a href="https://drive.google.com/file/d/1cJ5jDYwonU6j63kBFUA2pmQ6dApeZs4X/view?usp=sharing" target="_blank">فروری</a>
-        <a href="https://drive.google.com/file/d/1u1uoNfwfhJm9Hl-16ybXnpsJPGVJCbIx/view?usp=sharing" target="_blank">مارچ</a>
-        <a href="https://drive.google.com/file/d/1G4AVGpwVQaixXCpxT1UNWBFGzgMLFqO1/view?usp=sharing" target="_blank">اپریل</a>
-        <a href="https://drive.google.com/file/d/153hhONJivsBGKQfxW4o55AqbDFPNYsBh/view?usp=sharing" target="_blank">مئی</a>
-        <a href="https://drive.google.com/file/d/153hhONJivsBGKQfxW4o55AqbDFPNYsBh/view?usp=sharing" target="_blank">جون</a>
-        <a href="https://drive.google.com/file/d/153hhONJivsBGKQfxW4o55AqbDFPNYsBh/view?usp=sharing" target="_blank">جولائی</a>
-        <a href="https://drive.google.com/file/d/1Wrq5Z3hA9BlJtwdDLbw0meqohutRje32/view?usp=sharing" target="_blank">اگست</a>
-        <a href="https://drive.google.com/file/d/1geqr2_MHeANqdPRpIMQ_ym9pMYRRwP_M/view?usp=sharing" target="_blank">ستمبر</a>
-        <a href="https://drive.google.com/file/d/1Q0-CAICADGPADp_NIA-AabE8CR7-8BaT/view?usp=sharing" target="_blank">اکتوبر</a>
-        <a href="https://drive.google.com/file/d/1VxWBJXkT_gdRcI8vmvtvEryWRkBq3Ezv/view?usp=sharing" target="_blank">نومبر</a>
-        <a href="https://drive.google.com/file/d/1HNiJ08l0oH1vDFXm3fUJdTly_c2xJwbM/view?usp=sharing" target="_blank">دسمبر</a>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1zraCXGIP63tUAIOTJztjYzrR0QlAbXYu/preview" data-view="https://drive.google.com/file/d/1zraCXGIP63tUAIOTJztjYzrR0QlAbXYu/view" data-label="جنوری 2017">جنوری</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1cJ5jDYwonU6j63kBFUA2pmQ6dApeZs4X/preview" data-view="https://drive.google.com/file/d/1cJ5jDYwonU6j63kBFUA2pmQ6dApeZs4X/view" data-label="فروری 2017">فروری</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1u1uoNfwfhJm9Hl-16ybXnpsJPGVJCbIx/preview" data-view="https://drive.google.com/file/d/1u1uoNfwfhJm9Hl-16ybXnpsJPGVJCbIx/view" data-label="مارچ 2017">مارچ</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1G4AVGpwVQaixXCpxT1UNWBFGzgMLFqO1/preview" data-view="https://drive.google.com/file/d/1G4AVGpwVQaixXCpxT1UNWBFGzgMLFqO1/view" data-label="اپریل 2017">اپریل</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/153hhONJivsBGKQfxW4o55AqbDFPNYsBh/preview" data-view="https://drive.google.com/file/d/153hhONJivsBGKQfxW4o55AqbDFPNYsBh/view" data-label="مئی 2017">مئی</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/153hhONJivsBGKQfxW4o55AqbDFPNYsBh/preview" data-view="https://drive.google.com/file/d/153hhONJivsBGKQfxW4o55AqbDFPNYsBh/view" data-label="جون 2017">جون</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/153hhONJivsBGKQfxW4o55AqbDFPNYsBh/preview" data-view="https://drive.google.com/file/d/153hhONJivsBGKQfxW4o55AqbDFPNYsBh/view" data-label="جولائی 2017">جولائی</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1Wrq5Z3hA9BlJtwdDLbw0meqohutRje32/preview" data-view="https://drive.google.com/file/d/1Wrq5Z3hA9BlJtwdDLbw0meqohutRje32/view" data-label="اگست 2017">اگست</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1geqr2_MHeANqdPRpIMQ_ym9pMYRRwP_M/preview" data-view="https://drive.google.com/file/d/1geqr2_MHeANqdPRpIMQ_ym9pMYRRwP_M/view" data-label="ستمبر 2017">ستمبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1Q0-CAICADGPADp_NIA-AabE8CR7-8BaT/preview" data-view="https://drive.google.com/file/d/1Q0-CAICADGPADp_NIA-AabE8CR7-8BaT/view" data-label="اکتوبر 2017">اکتوبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1VxWBJXkT_gdRcI8vmvtvEryWRkBq3Ezv/preview" data-view="https://drive.google.com/file/d/1VxWBJXkT_gdRcI8vmvtvEryWRkBq3Ezv/view" data-label="نومبر 2017">نومبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1HNiJ08l0oH1vDFXm3fUJdTly_c2xJwbM/preview" data-view="https://drive.google.com/file/d/1HNiJ08l0oH1vDFXm3fUJdTly_c2xJwbM/view" data-label="دسمبر 2017">دسمبر</button>
       </div>
     </section>
 
-          <!-- 2018 -->
     <section class="year-section" id="y2018">
-      <h2>سال 2018</h2>
+      <div class="year-head">
+        <h2>سال 2018</h2>
+        <span class="year-count">12 شمارے دستیاب</span>
+      </div>
       <div class="buttons">
-        <a href="https://drive.google.com/file/d/1FwfQFD-tQgRZ3HWwxhKgG4F7hbwWfAs6/view?usp=sharing" target="_blank">جنوری</a>
-        <a href="https://drive.google.com/file/d/1xUkto80iE4XXOGRQKqxTnbhWF1bpAoGl/view?usp=sharing" target="_blank">فروری</a>
-        <a href="https://drive.google.com/file/d/1xUkto80iE4XXOGRQKqxTnbhWF1bpAoGl/view?usp=sharing" target="_blank">مارچ</a>
-        <a href="https://drive.google.com/file/d/1_uYHEMnbFIe3j-_7EjKpsfTNeq5NA9jO/view?usp=sharing" target="_blank">اپریل</a>
-        <a href="https://drive.google.com/file/d/1_uYHEMnbFIe3j-_7EjKpsfTNeq5NA9jO/view?usp=sharing" target="_blank">مئی</a>
-        <a href="https://drive.google.com/file/d/1_uYHEMnbFIe3j-_7EjKpsfTNeq5NA9jO/view?usp=sharing" target="_blank">جون</a>
-        <a href="https://drive.google.com/file/d/1_uYHEMnbFIe3j-_7EjKpsfTNeq5NA9jO/view?usp=sharing" target="_blank">جولائی</a>
-        <a href="https://drive.google.com/file/d/1jsxQ3DAUcejaObr6RhmmH9043oOHMzmW/view?usp=sharing" target="_blank">اگست</a>
-        <a href="https://drive.google.com/file/d/1jsxQ3DAUcejaObr6RhmmH9043oOHMzmW/view?usp=sharing" target="_blank">ستمبر</a>
-        <a href="https://drive.google.com/file/d/1Ioo4g4E0IG8ZVcyIXEkds4c33hcEYmK8/view?usp=sharing" target="_blank">اکتوبر</a>
-        <a href="https://drive.google.com/file/d/1E-9BuLlxwltHX3lXQ-VmgSTxlH8-znFY/view?usp=sharing" target="_blank">نومبر</a>
-        <a href="https://drive.google.com/file/d/1pubCIex42zdMUR6bK_E7AbvBFMJfvIX9/view?usp=sharing" target="_blank">دسمبر</a>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1FwfQFD-tQgRZ3HWwxhKgG4F7hbwWfAs6/preview" data-view="https://drive.google.com/file/d/1FwfQFD-tQgRZ3HWwxhKgG4F7hbwWfAs6/view" data-label="جنوری 2018">جنوری</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1xUkto80iE4XXOGRQKqxTnbhWF1bpAoGl/preview" data-view="https://drive.google.com/file/d/1xUkto80iE4XXOGRQKqxTnbhWF1bpAoGl/view" data-label="فروری 2018">فروری</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1xUkto80iE4XXOGRQKqxTnbhWF1bpAoGl/preview" data-view="https://drive.google.com/file/d/1xUkto80iE4XXOGRQKqxTnbhWF1bpAoGl/view" data-label="مارچ 2018">مارچ</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1_uYHEMnbFIe3j-_7EjKpsfTNeq5NA9jO/preview" data-view="https://drive.google.com/file/d/1_uYHEMnbFIe3j-_7EjKpsfTNeq5NA9jO/view" data-label="اپریل 2018">اپریل</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1_uYHEMnbFIe3j-_7EjKpsfTNeq5NA9jO/preview" data-view="https://drive.google.com/file/d/1_uYHEMnbFIe3j-_7EjKpsfTNeq5NA9jO/view" data-label="مئی 2018">مئی</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1_uYHEMnbFIe3j-_7EjKpsfTNeq5NA9jO/preview" data-view="https://drive.google.com/file/d/1_uYHEMnbFIe3j-_7EjKpsfTNeq5NA9jO/view" data-label="جون 2018">جون</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1_uYHEMnbFIe3j-_7EjKpsfTNeq5NA9jO/preview" data-view="https://drive.google.com/file/d/1_uYHEMnbFIe3j-_7EjKpsfTNeq5NA9jO/view" data-label="جولائی 2018">جولائی</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1jsxQ3DAUcejaObr6RhmmH9043oOHMzmW/preview" data-view="https://drive.google.com/file/d/1jsxQ3DAUcejaObr6RhmmH9043oOHMzmW/view" data-label="اگست 2018">اگست</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1jsxQ3DAUcejaObr6RhmmH9043oOHMzmW/preview" data-view="https://drive.google.com/file/d/1jsxQ3DAUcejaObr6RhmmH9043oOHMzmW/view" data-label="ستمبر 2018">ستمبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1Ioo4g4E0IG8ZVcyIXEkds4c33hcEYmK8/preview" data-view="https://drive.google.com/file/d/1Ioo4g4E0IG8ZVcyIXEkds4c33hcEYmK8/view" data-label="اکتوبر 2018">اکتوبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1E-9BuLlxwltHX3lXQ-VmgSTxlH8-znFY/preview" data-view="https://drive.google.com/file/d/1E-9BuLlxwltHX3lXQ-VmgSTxlH8-znFY/view" data-label="نومبر 2018">نومبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1pubCIex42zdMUR6bK_E7AbvBFMJfvIX9/preview" data-view="https://drive.google.com/file/d/1pubCIex42zdMUR6bK_E7AbvBFMJfvIX9/view" data-label="دسمبر 2018">دسمبر</button>
       </div>
     </section>
 
-  <!-- 2019 -->
     <section class="year-section" id="y2019">
-      <h2>سال 2019</h2>
+      <div class="year-head">
+        <h2>سال 2019</h2>
+        <span class="year-count">12 شمارے دستیاب</span>
+      </div>
       <div class="buttons">
-        <a href="https://drive.google.com/file/d/1V1_E3x5yMUFxaAreUU3LCixN4Av4-O0D/view?usp=sharing" target="_blank">جنوری</a>
-        <a href="https://drive.google.com/file/d/1kCO4s0SvocmQHLMWNdmjXvhkTEhG58vV/view?usp=sharing" target="_blank">فروری</a>
-        <a href="https://drive.google.com/file/d/1fiXX5NqgMGWzb-66no0gP5Reo63UwLsf/view?usp=sharing" target="_blank">مارچ</a>
-        <a href="https://drive.google.com/file/d/1C5YOcAbrnK58JVBSLKZqmjdyZ6Wb8ou0/view?usp=sharing" target="_blank">اپریل</a>
-        <a href="https://drive.google.com/file/d/1j6chn_bhEULK_kdHPwgBubiZwrNNvfrT/view?usp=sharing" target="_blank">مئی</a>
-        <a href="https://drive.google.com/file/d/1j6chn_bhEULK_kdHPwgBubiZwrNNvfrT/view?usp=sharing" target="_blank">جون</a>
-        <a href="https://drive.google.com/file/d/1j6chn_bhEULK_kdHPwgBubiZwrNNvfrT/view?usp=sharing" target="_blank">جولائی</a>
-        <a href="https://drive.google.com/file/d/1JvqcDoh6xTfSdfQ7QxLNZZIsABDI5ZHY/view?usp=sharing" target="_blank">اگست</a>
-        <a href="https://drive.google.com/file/d/1qo3Tl0vY-MTorfuCG88q0WNpZh2API0n/view?usp=sharing" target="_blank">ستمبر</a>
-        <a href="https://drive.google.com/file/d/1rDFJcKUUBeRTc6mbxWWQ9sJkaRkW7yGm/view?usp=sharing" target="_blank">اکتوبر</a>
-        <a href="https://drive.google.com/file/d/1Hyfyzt47O4WPk4K2OyhlfVs2yDFx5qWL/view?usp=sharing" target="_blank">نومبر</a>
-        <a href="https://drive.google.com/file/d/1Hyfyzt47O4WPk4K2OyhlfVs2yDFx5qWL/view?usp=sharing" target="_blank">دسمبر</a>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1V1_E3x5yMUFxaAreUU3LCixN4Av4-O0D/preview" data-view="https://drive.google.com/file/d/1V1_E3x5yMUFxaAreUU3LCixN4Av4-O0D/view" data-label="جنوری 2019">جنوری</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1kCO4s0SvocmQHLMWNdmjXvhkTEhG58vV/preview" data-view="https://drive.google.com/file/d/1kCO4s0SvocmQHLMWNdmjXvhkTEhG58vV/view" data-label="فروری 2019">فروری</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1fiXX5NqgMGWzb-66no0gP5Reo63UwLsf/preview" data-view="https://drive.google.com/file/d/1fiXX5NqgMGWzb-66no0gP5Reo63UwLsf/view" data-label="مارچ 2019">مارچ</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1C5YOcAbrnK58JVBSLKZqmjdyZ6Wb8ou0/preview" data-view="https://drive.google.com/file/d/1C5YOcAbrnK58JVBSLKZqmjdyZ6Wb8ou0/view" data-label="اپریل 2019">اپریل</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1j6chn_bhEULK_kdHPwgBubiZwrNNvfrT/preview" data-view="https://drive.google.com/file/d/1j6chn_bhEULK_kdHPwgBubiZwrNNvfrT/view" data-label="مئی 2019">مئی</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1j6chn_bhEULK_kdHPwgBubiZwrNNvfrT/preview" data-view="https://drive.google.com/file/d/1j6chn_bhEULK_kdHPwgBubiZwrNNvfrT/view" data-label="جون 2019">جون</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1j6chn_bhEULK_kdHPwgBubiZwrNNvfrT/preview" data-view="https://drive.google.com/file/d/1j6chn_bhEULK_kdHPwgBubiZwrNNvfrT/view" data-label="جولائی 2019">جولائی</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1JvqcDoh6xTfSdfQ7QxLNZZIsABDI5ZHY/preview" data-view="https://drive.google.com/file/d/1JvqcDoh6xTfSdfQ7QxLNZZIsABDI5ZHY/view" data-label="اگست 2019">اگست</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1qo3Tl0vY-MTorfuCG88q0WNpZh2API0n/preview" data-view="https://drive.google.com/file/d/1qo3Tl0vY-MTorfuCG88q0WNpZh2API0n/view" data-label="ستمبر 2019">ستمبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1rDFJcKUUBeRTc6mbxWWQ9sJkaRkW7yGm/preview" data-view="https://drive.google.com/file/d/1rDFJcKUUBeRTc6mbxWWQ9sJkaRkW7yGm/view" data-label="اکتوبر 2019">اکتوبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1Hyfyzt47O4WPk4K2OyhlfVs2yDFx5qWL/preview" data-view="https://drive.google.com/file/d/1Hyfyzt47O4WPk4K2OyhlfVs2yDFx5qWL/view" data-label="نومبر 2019">نومبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1Hyfyzt47O4WPk4K2OyhlfVs2yDFx5qWL/preview" data-view="https://drive.google.com/file/d/1Hyfyzt47O4WPk4K2OyhlfVs2yDFx5qWL/view" data-label="دسمبر 2019">دسمبر</button>
       </div>
     </section>
 
-
-          <!-- 2020 -->
     <section class="year-section" id="y2020">
-      <h2>سال 2020</h2>
+      <div class="year-head">
+        <h2>سال 2020</h2>
+        <span class="year-count">12 شمارے دستیاب</span>
+      </div>
       <div class="buttons">
-        <a href="https://drive.google.com/file/d/1cn6Z0sqw3qrPGJLQ9l8oZkw4LKjJyCXF/view?usp=sharing" target="_blank">جنوری</a>
-        <a href="https://drive.google.com/file/d/1cn6Z0sqw3qrPGJLQ9l8oZkw4LKjJyCXF/view?usp=sharing" target="_blank">فروری</a>
-        <a href="https://drive.google.com/file/d/1KZ9mq7-4Y1_gRxev4jP1-qwXAqq5oRDt/view?usp=sharing" target="_blank">مارچ</a>
-        <a href="https://drive.google.com/file/d/11P5gGY76P_QP7xhIqKyRZKsrCTKocjpY/view?usp=sharing" target="_blank">اپریل</a>
-        <a href="https://drive.google.com/file/d/11P5gGY76P_QP7xhIqKyRZKsrCTKocjpY/view?usp=sharing" target="_blank">مئی</a>
-        <a href="https://drive.google.com/file/d/11P5gGY76P_QP7xhIqKyRZKsrCTKocjpY/view?usp=sharing" target="_blank">جون</a>
-        <a href="https://drive.google.com/file/d/11P5gGY76P_QP7xhIqKyRZKsrCTKocjpY/view?usp=sharing" target="_blank">جولائی</a>
-        <a href="https://drive.google.com/file/d/1z97DZO8uCy5rpXQCP9U0s_tO28-fIHv3/view?usp=sharing" target="_blank">اگست</a>
-        <a href="https://drive.google.com/file/d/1z97DZO8uCy5rpXQCP9U0s_tO28-fIHv3/view?usp=sharing" target="_blank">ستمبر</a>
-        <a href="https://drive.google.com/file/d/1z97DZO8uCy5rpXQCP9U0s_tO28-fIHv3/view?usp=sharing" target="_blank">اکتوبر</a>
-        <a href="https://drive.google.com/file/d/1z97DZO8uCy5rpXQCP9U0s_tO28-fIHv3/view?usp=sharing" target="_blank">نومبر</a>
-        <a href="https://drive.google.com/file/d/1rSKCQXKDLBBvAGUPglLX_7600O49RcmK/view?usp=sharing" target="_blank">دسمبر</a>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1cn6Z0sqw3qrPGJLQ9l8oZkw4LKjJyCXF/preview" data-view="https://drive.google.com/file/d/1cn6Z0sqw3qrPGJLQ9l8oZkw4LKjJyCXF/view" data-label="جنوری 2020">جنوری</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1cn6Z0sqw3qrPGJLQ9l8oZkw4LKjJyCXF/preview" data-view="https://drive.google.com/file/d/1cn6Z0sqw3qrPGJLQ9l8oZkw4LKjJyCXF/view" data-label="فروری 2020">فروری</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1KZ9mq7-4Y1_gRxev4jP1-qwXAqq5oRDt/preview" data-view="https://drive.google.com/file/d/1KZ9mq7-4Y1_gRxev4jP1-qwXAqq5oRDt/view" data-label="مارچ 2020">مارچ</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/11P5gGY76P_QP7xhIqKyRZKsrCTKocjpY/preview" data-view="https://drive.google.com/file/d/11P5gGY76P_QP7xhIqKyRZKsrCTKocjpY/view" data-label="اپریل 2020">اپریل</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/11P5gGY76P_QP7xhIqKyRZKsrCTKocjpY/preview" data-view="https://drive.google.com/file/d/11P5gGY76P_QP7xhIqKyRZKsrCTKocjpY/view" data-label="مئی 2020">مئی</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/11P5gGY76P_QP7xhIqKyRZKsrCTKocjpY/preview" data-view="https://drive.google.com/file/d/11P5gGY76P_QP7xhIqKyRZKsrCTKocjpY/view" data-label="جون 2020">جون</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/11P5gGY76P_QP7xhIqKyRZKsrCTKocjpY/preview" data-view="https://drive.google.com/file/d/11P5gGY76P_QP7xhIqKyRZKsrCTKocjpY/view" data-label="جولائی 2020">جولائی</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1z97DZO8uCy5rpXQCP9U0s_tO28-fIHv3/preview" data-view="https://drive.google.com/file/d/1z97DZO8uCy5rpXQCP9U0s_tO28-fIHv3/view" data-label="اگست 2020">اگست</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1z97DZO8uCy5rpXQCP9U0s_tO28-fIHv3/preview" data-view="https://drive.google.com/file/d/1z97DZO8uCy5rpXQCP9U0s_tO28-fIHv3/view" data-label="ستمبر 2020">ستمبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1z97DZO8uCy5rpXQCP9U0s_tO28-fIHv3/preview" data-view="https://drive.google.com/file/d/1z97DZO8uCy5rpXQCP9U0s_tO28-fIHv3/view" data-label="اکتوبر 2020">اکتوبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1z97DZO8uCy5rpXQCP9U0s_tO28-fIHv3/preview" data-view="https://drive.google.com/file/d/1z97DZO8uCy5rpXQCP9U0s_tO28-fIHv3/view" data-label="نومبر 2020">نومبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1rSKCQXKDLBBvAGUPglLX_7600O49RcmK/preview" data-view="https://drive.google.com/file/d/1rSKCQXKDLBBvAGUPglLX_7600O49RcmK/view" data-label="دسمبر 2020">دسمبر</button>
       </div>
     </section>
 
-          <!-- 2021 -->
     <section class="year-section" id="y2021">
-      <h2>سال 2021</h2>
+      <div class="year-head">
+        <h2>سال 2021</h2>
+        <span class="year-count">6 شمارے دستیاب</span>
+      </div>
       <div class="buttons">
-        <a href="https://drive.google.com/file/d/187E8Y5O5FC-MldOFdjbdOwujr766-BdY/view?usp=sharing" target="_blank">جنوری</a>
-        <a href="https://drive.google.com/file/d/187E8Y5O5FC-MldOFdjbdOwujr766-BdY/view?usp=sharing" target="_blank">فروری</a>
-        <a href="https://drive.google.com/file/d/1Bg5uwy7Mt8-TS62FNi_PJ__Riq-BVP_K/view?usp=sharing" target="_blank">مارچ</a>
-        <a href="https://drive.google.com/file/d/1Bg5uwy7Mt8-TS62FNi_PJ__Riq-BVP_K/view?usp=sharing" target="_blank">اپریل</a>
-        <a href="https://drive.google.com/file/d/1a74TepdKClrImIYdxDKYzIlOpPEicziF/view?usp=sharing" target="_blank">مئی</a>
-        <a href="https://drive.google.com/file/d/1a74TepdKClrImIYdxDKYzIlOpPEicziF/view?usp=sharing" target="_blank">جون</a>
-        <span class="disabled" title="یہ شمارہ ابھی لائبریری میں شامل نہیں کیا گیا">جولائی</span>
-        <span class="disabled" title="یہ شمارہ ابھی لائبریری میں شامل نہیں کیا گیا">اگست</span>
-        <span class="disabled" title="یہ شمارہ ابھی لائبریری میں شامل نہیں کیا گیا">ستمبر</span>
-        <span class="disabled" title="یہ شمارہ ابھی لائبریری میں شامل نہیں کیا گیا">اکتوبر</span>
-        <span class="disabled" title="یہ شمارہ ابھی لائبریری میں شامل نہیں کیا گیا">نومبر</span>
-        <span class="disabled" title="یہ شمارہ ابھی لائبریری میں شامل نہیں کیا گیا">دسمبر</span>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/187E8Y5O5FC-MldOFdjbdOwujr766-BdY/preview" data-view="https://drive.google.com/file/d/187E8Y5O5FC-MldOFdjbdOwujr766-BdY/view" data-label="جنوری 2021">جنوری</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/187E8Y5O5FC-MldOFdjbdOwujr766-BdY/preview" data-view="https://drive.google.com/file/d/187E8Y5O5FC-MldOFdjbdOwujr766-BdY/view" data-label="فروری 2021">فروری</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1Bg5uwy7Mt8-TS62FNi_PJ__Riq-BVP_K/preview" data-view="https://drive.google.com/file/d/1Bg5uwy7Mt8-TS62FNi_PJ__Riq-BVP_K/view" data-label="مارچ 2021">مارچ</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1Bg5uwy7Mt8-TS62FNi_PJ__Riq-BVP_K/preview" data-view="https://drive.google.com/file/d/1Bg5uwy7Mt8-TS62FNi_PJ__Riq-BVP_K/view" data-label="اپریل 2021">اپریل</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1a74TepdKClrImIYdxDKYzIlOpPEicziF/preview" data-view="https://drive.google.com/file/d/1a74TepdKClrImIYdxDKYzIlOpPEicziF/view" data-label="مئی 2021">مئی</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1a74TepdKClrImIYdxDKYzIlOpPEicziF/preview" data-view="https://drive.google.com/file/d/1a74TepdKClrImIYdxDKYzIlOpPEicziF/view" data-label="جون 2021">جون</button>
+        <span class="issue-btn disabled" title="یہ شمارہ ابھی لائبریری میں شامل نہیں کیا گیا">جولائی</span>
+        <span class="issue-btn disabled" title="یہ شمارہ ابھی لائبریری میں شامل نہیں کیا گیا">اگست</span>
+        <span class="issue-btn disabled" title="یہ شمارہ ابھی لائبریری میں شامل نہیں کیا گیا">ستمبر</span>
+        <span class="issue-btn disabled" title="یہ شمارہ ابھی لائبریری میں شامل نہیں کیا گیا">اکتوبر</span>
+        <span class="issue-btn disabled" title="یہ شمارہ ابھی لائبریری میں شامل نہیں کیا گیا">نومبر</span>
+        <span class="issue-btn disabled" title="یہ شمارہ ابھی لائبریری میں شامل نہیں کیا گیا">دسمبر</span>
       </div>
     </section>
 
-        <!-- 2022 -->
-        <section class="year-section" id="y2022">
-            <h2>سال 2022</h2>
-            <div class="buttons">
-                <a href="https://drive.google.com/file/d/1ARFBwhiAxauxapnuQkCUzOZg_Fzcic6J/view?usp=sharing" target="_blank">جنوری</a>
-                <a href="https://drive.google.com/file/d/1ARFBwhiAxauxapnuQkCUzOZg_Fzcic6J/view?usp=sharing" target="_blank">فروری</a>
-                <a href="https://drive.google.com/file/d/1ARFBwhiAxauxapnuQkCUzOZg_Fzcic6J/view?usp=sharing" target="_blank">مارچ</a>
-                <a href="https://drive.google.com/file/d/1ARFBwhiAxauxapnuQkCUzOZg_Fzcic6J/view?usp=sharing" target="_blank">اپریل</a>
-                <a href="https://drive.google.com/file/d/1C_WFdFDLqBlMfvzuHuqj04e4OaqGuEQy/view?usp=sharing" target="_blank">مئی</a>
-                <a href="https://drive.google.com/file/d/1C_WFdFDLqBlMfvzuHuqj04e4OaqGuEQy/view?usp=sharing" target="_blank">جون</a>
-                <a href="https://drive.google.com/file/d/1C_WFdFDLqBlMfvzuHuqj04e4OaqGuEQy/view?usp=sharing" target="_blank">جولائی</a>
-                <a href="https://drive.google.com/file/d/1C_WFdFDLqBlMfvzuHuqj04e4OaqGuEQy/view?usp=sharing" target="_blank">اگست</a>
-                <a href="https://drive.google.com/file/d/1KP94OXsc2Y39nAE6lKqymF4uIBsjjF2j/view?usp=sharing" target="_blank">ستمبر</a>
-                <a href="https://drive.google.com/file/d/1KP94OXsc2Y39nAE6lKqymF4uIBsjjF2j/view?usp=sharing" target="_blank">اکتوبر</a>
-                <a href="https://drive.google.com/file/d/1KP94OXsc2Y39nAE6lKqymF4uIBsjjF2j/view?usp=sharing" target="_blank">نومبر</a>
-                <a href="https://drive.google.com/file/d/1KP94OXsc2Y39nAE6lKqymF4uIBsjjF2j/view?usp=sharing" target="_blank">دسمبر</a>
-            </div>
-        </section>
+    <section class="year-section" id="y2022">
+      <div class="year-head">
+        <h2>سال 2022</h2>
+        <span class="year-count">12 شمارے دستیاب</span>
+      </div>
+      <div class="buttons">
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1ARFBwhiAxauxapnuQkCUzOZg_Fzcic6J/preview" data-view="https://drive.google.com/file/d/1ARFBwhiAxauxapnuQkCUzOZg_Fzcic6J/view" data-label="جنوری 2022">جنوری</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1ARFBwhiAxauxapnuQkCUzOZg_Fzcic6J/preview" data-view="https://drive.google.com/file/d/1ARFBwhiAxauxapnuQkCUzOZg_Fzcic6J/view" data-label="فروری 2022">فروری</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1ARFBwhiAxauxapnuQkCUzOZg_Fzcic6J/preview" data-view="https://drive.google.com/file/d/1ARFBwhiAxauxapnuQkCUzOZg_Fzcic6J/view" data-label="مارچ 2022">مارچ</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1ARFBwhiAxauxapnuQkCUzOZg_Fzcic6J/preview" data-view="https://drive.google.com/file/d/1ARFBwhiAxauxapnuQkCUzOZg_Fzcic6J/view" data-label="اپریل 2022">اپریل</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1C_WFdFDLqBlMfvzuHuqj04e4OaqGuEQy/preview" data-view="https://drive.google.com/file/d/1C_WFdFDLqBlMfvzuHuqj04e4OaqGuEQy/view" data-label="مئی 2022">مئی</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1C_WFdFDLqBlMfvzuHuqj04e4OaqGuEQy/preview" data-view="https://drive.google.com/file/d/1C_WFdFDLqBlMfvzuHuqj04e4OaqGuEQy/view" data-label="جون 2022">جون</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1C_WFdFDLqBlMfvzuHuqj04e4OaqGuEQy/preview" data-view="https://drive.google.com/file/d/1C_WFdFDLqBlMfvzuHuqj04e4OaqGuEQy/view" data-label="جولائی 2022">جولائی</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1C_WFdFDLqBlMfvzuHuqj04e4OaqGuEQy/preview" data-view="https://drive.google.com/file/d/1C_WFdFDLqBlMfvzuHuqj04e4OaqGuEQy/view" data-label="اگست 2022">اگست</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1KP94OXsc2Y39nAE6lKqymF4uIBsjjF2j/preview" data-view="https://drive.google.com/file/d/1KP94OXsc2Y39nAE6lKqymF4uIBsjjF2j/view" data-label="ستمبر 2022">ستمبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1KP94OXsc2Y39nAE6lKqymF4uIBsjjF2j/preview" data-view="https://drive.google.com/file/d/1KP94OXsc2Y39nAE6lKqymF4uIBsjjF2j/view" data-label="اکتوبر 2022">اکتوبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1KP94OXsc2Y39nAE6lKqymF4uIBsjjF2j/preview" data-view="https://drive.google.com/file/d/1KP94OXsc2Y39nAE6lKqymF4uIBsjjF2j/view" data-label="نومبر 2022">نومبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1KP94OXsc2Y39nAE6lKqymF4uIBsjjF2j/preview" data-view="https://drive.google.com/file/d/1KP94OXsc2Y39nAE6lKqymF4uIBsjjF2j/view" data-label="دسمبر 2022">دسمبر</button>
+      </div>
+    </section>
 
+    <section class="year-section" id="y2023">
+      <div class="year-head">
+        <h2>سال 2023</h2>
+        <span class="year-count">12 شمارے دستیاب</span>
+      </div>
+      <div class="buttons">
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1UKyeRXBh-ZkSMeiALxDnZ63frfQDseuU/preview" data-view="https://drive.google.com/file/d/1UKyeRXBh-ZkSMeiALxDnZ63frfQDseuU/view" data-label="جنوری 2023">جنوری</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1UKyeRXBh-ZkSMeiALxDnZ63frfQDseuU/preview" data-view="https://drive.google.com/file/d/1UKyeRXBh-ZkSMeiALxDnZ63frfQDseuU/view" data-label="فروری 2023">فروری</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1UKyeRXBh-ZkSMeiALxDnZ63frfQDseuU/preview" data-view="https://drive.google.com/file/d/1UKyeRXBh-ZkSMeiALxDnZ63frfQDseuU/view" data-label="مارچ 2023">مارچ</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1J36gUlTGErxKH8RyUR5uhuQj7sgDRALP/preview" data-view="https://drive.google.com/file/d/1J36gUlTGErxKH8RyUR5uhuQj7sgDRALP/view" data-label="اپریل 2023">اپریل</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1J36gUlTGErxKH8RyUR5uhuQj7sgDRALP/preview" data-view="https://drive.google.com/file/d/1J36gUlTGErxKH8RyUR5uhuQj7sgDRALP/view" data-label="مئی 2023">مئی</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1J36gUlTGErxKH8RyUR5uhuQj7sgDRALP/preview" data-view="https://drive.google.com/file/d/1J36gUlTGErxKH8RyUR5uhuQj7sgDRALP/view" data-label="جون 2023">جون</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1_RG2DfXlPQNrsN-i7ad3s0slI1BB_XzZ/preview" data-view="https://drive.google.com/file/d/1_RG2DfXlPQNrsN-i7ad3s0slI1BB_XzZ/view" data-label="جولائی 2023">جولائی</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1_RG2DfXlPQNrsN-i7ad3s0slI1BB_XzZ/preview" data-view="https://drive.google.com/file/d/1_RG2DfXlPQNrsN-i7ad3s0slI1BB_XzZ/view" data-label="اگست 2023">اگست</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1_RG2DfXlPQNrsN-i7ad3s0slI1BB_XzZ/preview" data-view="https://drive.google.com/file/d/1_RG2DfXlPQNrsN-i7ad3s0slI1BB_XzZ/view" data-label="ستمبر 2023">ستمبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1_RG2DfXlPQNrsN-i7ad3s0slI1BB_XzZ/preview" data-view="https://drive.google.com/file/d/1_RG2DfXlPQNrsN-i7ad3s0slI1BB_XzZ/view" data-label="اکتوبر 2023">اکتوبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1_RG2DfXlPQNrsN-i7ad3s0slI1BB_XzZ/preview" data-view="https://drive.google.com/file/d/1_RG2DfXlPQNrsN-i7ad3s0slI1BB_XzZ/view" data-label="نومبر 2023">نومبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1_RG2DfXlPQNrsN-i7ad3s0slI1BB_XzZ/preview" data-view="https://drive.google.com/file/d/1_RG2DfXlPQNrsN-i7ad3s0slI1BB_XzZ/view" data-label="دسمبر 2023">دسمبر</button>
+      </div>
+    </section>
 
-        <!-- 2023 -->
-        <section class="year-section" id="y2023">
-            <h2>سال 2023</h2>
-            <div class="buttons">
-                <a href="https://drive.google.com/file/d/1UKyeRXBh-ZkSMeiALxDnZ63frfQDseuU/view?usp=sharing" target="_blank">جنوری</a>
-                <a href="https://drive.google.com/file/d/1UKyeRXBh-ZkSMeiALxDnZ63frfQDseuU/view?usp=sharing" target="_blank">فروری</a>
-                <a href="https://drive.google.com/file/d/1UKyeRXBh-ZkSMeiALxDnZ63frfQDseuU/view?usp=sharing" target="_blank">مارچ</a>
-                <a href="https://drive.google.com/file/d/1J36gUlTGErxKH8RyUR5uhuQj7sgDRALP/view?usp=sharing" target="_blank">اپریل</a>
-                <a href="https://drive.google.com/file/d/1J36gUlTGErxKH8RyUR5uhuQj7sgDRALP/view?usp=sharing" target="_blank">مئی</a>
-                <a href="https://drive.google.com/file/d/1J36gUlTGErxKH8RyUR5uhuQj7sgDRALP/view?usp=sharing" target="_blank">جون</a>
-                <a href="https://drive.google.com/file/d/1_RG2DfXlPQNrsN-i7ad3s0slI1BB_XzZ/view?usp=sharing" target="_blank">جولائی</a>
-                <a href="https://drive.google.com/file/d/1_RG2DfXlPQNrsN-i7ad3s0slI1BB_XzZ/view?usp=sharing" target="_blank">اگست</a>
-                <a href="https://drive.google.com/file/d/1_RG2DfXlPQNrsN-i7ad3s0slI1BB_XzZ/view?usp=sharing" target="_blank">ستمبر</a>
-                <a href="https://drive.google.com/file/d/1_RG2DfXlPQNrsN-i7ad3s0slI1BB_XzZ/view?usp=sharing" target="_blank">اکتوبر</a>
-                <a href="https://drive.google.com/file/d/1_RG2DfXlPQNrsN-i7ad3s0slI1BB_XzZ/view?usp=sharing" target="_blank">نومبر</a>
-                <a href="https://drive.google.com/file/d/1_RG2DfXlPQNrsN-i7ad3s0slI1BB_XzZ/view?usp=sharing" target="_blank">دسمبر</a>
-            </div>
-        </section>
+    <section class="year-section" id="y2024">
+      <div class="year-head">
+        <h2>سال 2024</h2>
+        <span class="year-count">12 شمارے دستیاب</span>
+      </div>
+      <div class="buttons">
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1szqNBascw-zd5wxWQQtmGHnXS_yqy36s/preview" data-view="https://drive.google.com/file/d/1szqNBascw-zd5wxWQQtmGHnXS_yqy36s/view" data-label="جنوری 2024">جنوری</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1szqNBascw-zd5wxWQQtmGHnXS_yqy36s/preview" data-view="https://drive.google.com/file/d/1szqNBascw-zd5wxWQQtmGHnXS_yqy36s/view" data-label="فروری 2024">فروری</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1szqNBascw-zd5wxWQQtmGHnXS_yqy36s/preview" data-view="https://drive.google.com/file/d/1szqNBascw-zd5wxWQQtmGHnXS_yqy36s/view" data-label="مارچ 2024">مارچ</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1szqNBascw-zd5wxWQQtmGHnXS_yqy36s/preview" data-view="https://drive.google.com/file/d/1szqNBascw-zd5wxWQQtmGHnXS_yqy36s/view" data-label="اپریل 2024">اپریل</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1v9X_Jo3Y-pJx0aNxKM0JOLH9y0ERbDMj/preview" data-view="https://drive.google.com/file/d/1v9X_Jo3Y-pJx0aNxKM0JOLH9y0ERbDMj/view" data-label="مئی 2024">مئی</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1v9X_Jo3Y-pJx0aNxKM0JOLH9y0ERbDMj/preview" data-view="https://drive.google.com/file/d/1v9X_Jo3Y-pJx0aNxKM0JOLH9y0ERbDMj/view" data-label="جون 2024">جون</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/18GBOS7nSvmsj6WRa8-6TzuI0iiufZDuB/preview" data-view="https://drive.google.com/file/d/18GBOS7nSvmsj6WRa8-6TzuI0iiufZDuB/view" data-label="جولائی 2024">جولائی</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/18GBOS7nSvmsj6WRa8-6TzuI0iiufZDuB/preview" data-view="https://drive.google.com/file/d/18GBOS7nSvmsj6WRa8-6TzuI0iiufZDuB/view" data-label="اگست 2024">اگست</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/18GBOS7nSvmsj6WRa8-6TzuI0iiufZDuB/preview" data-view="https://drive.google.com/file/d/18GBOS7nSvmsj6WRa8-6TzuI0iiufZDuB/view" data-label="ستمبر 2024">ستمبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/15-BSgerkCqNBDwuyYgV0sv3dK_XSFSNX/preview" data-view="https://drive.google.com/file/d/15-BSgerkCqNBDwuyYgV0sv3dK_XSFSNX/view" data-label="اکتوبر 2024">اکتوبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/15-BSgerkCqNBDwuyYgV0sv3dK_XSFSNX/preview" data-view="https://drive.google.com/file/d/15-BSgerkCqNBDwuyYgV0sv3dK_XSFSNX/view" data-label="نومبر 2024">نومبر</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/15-BSgerkCqNBDwuyYgV0sv3dK_XSFSNX/preview" data-view="https://drive.google.com/file/d/15-BSgerkCqNBDwuyYgV0sv3dK_XSFSNX/view" data-label="دسمبر 2024">دسمبر</button>
+      </div>
+    </section>
 
-        <!-- 2024 -->
-        <section class="year-section" id="y2024">
-            <h2>سال 2024</h2>
-            <div class="buttons">
-                <a href="https://drive.google.com/file/d/1szqNBascw-zd5wxWQQtmGHnXS_yqy36s/view?usp=sharing" target="_blank">جنوری</a>
-                <a href="https://drive.google.com/file/d/1szqNBascw-zd5wxWQQtmGHnXS_yqy36s/view?usp=sharing" target="_blank">فروری</a>
-                <a href="https://drive.google.com/file/d/1szqNBascw-zd5wxWQQtmGHnXS_yqy36s/view?usp=sharing" target="_blank">مارچ</a>
-                <a href="https://drive.google.com/file/d/1szqNBascw-zd5wxWQQtmGHnXS_yqy36s/view?usp=sharing" target="_blank">اپریل</a>
-                <a href="https://drive.google.com/file/d/1v9X_Jo3Y-pJx0aNxKM0JOLH9y0ERbDMj/view?usp=sharing" target="_blank">مئی</a>
-                <a href="https://drive.google.com/file/d/1v9X_Jo3Y-pJx0aNxKM0JOLH9y0ERbDMj/view?usp=sharing" target="_blank">جون</a>
-                <a href="https://drive.google.com/file/d/18GBOS7nSvmsj6WRa8-6TzuI0iiufZDuB/view?usp=sharing" target="_blank">جولائی</a>
-                <a href="https://drive.google.com/file/d/18GBOS7nSvmsj6WRa8-6TzuI0iiufZDuB/view?usp=sharing" target="_blank">اگست</a>
-                <a href="https://drive.google.com/file/d/18GBOS7nSvmsj6WRa8-6TzuI0iiufZDuB/view?usp=sharing" target="_blank">ستمبر</a>
-                <a href="https://drive.google.com/file/d/15-BSgerkCqNBDwuyYgV0sv3dK_XSFSNX/view?usp=sharing" target="_blank">اکتوبر</a>
-                <a href="https://drive.google.com/file/d/15-BSgerkCqNBDwuyYgV0sv3dK_XSFSNX/view?usp=sharing" target="_blank">نومبر</a>
-                <a href="https://drive.google.com/file/d/15-BSgerkCqNBDwuyYgV0sv3dK_XSFSNX/view?usp=sharing" target="_blank">دسمبر</a>
-            </div>
-        </section>
-
-        <!-- 2025 -->
-        <section class="year-section" id="y2025">
-            <h2>سال 2025</h2>
-            <div class="buttons">
-                <a href="https://drive.google.com/file/d/1EFXVkWCEMaV2MwutOsXs696uQ-eNYtEC/view?usp=sharing" target="_blank">جنوری</a>
-                <a href="https://drive.google.com/file/d/1EFXVkWCEMaV2MwutOsXs696uQ-eNYtEC/view?usp=sharing" target="_blank">فروری</a>
-                <a href="https://drive.google.com/file/d/1EFXVkWCEMaV2MwutOsXs696uQ-eNYtEC/view?usp=sharing" target="_blank">مارچ</a>
-                <a href="https://drive.google.com/file/d/1EFXVkWCEMaV2MwutOsXs696uQ-eNYtEC/view?usp=sharing" target="_blank">اپریل</a>
-                <a href="https://drive.google.com/file/d/1Gqsvv6NdrMxxI7Rez_bK3odV4HW-LWj0/view?usp=sharing" target="_blank">مئی</a>
-                <a href="https://drive.google.com/file/d/1Gqsvv6NdrMxxI7Rez_bK3odV4HW-LWj0/view?usp=sharing" target="_blank">جون</a>
-                <a href="https://drive.google.com/file/d/1Gqsvv6NdrMxxI7Rez_bK3odV4HW-LWj0/view?usp=sharing" target="_blank">جولائی</a>
-                <span class="disabled" title="یہ شمارہ ابھی لائبریری میں شامل نہیں کیا گیا">اگست</span>
-                <span class="disabled" title="یہ شمارہ ابھی لائبریری میں شامل نہیں کیا گیا">ستمبر</span>
-                <span class="disabled" title="یہ شمارہ ابھی لائبریری میں شامل نہیں کیا گیا">اکتوبر</span>
-                <span class="disabled" title="یہ شمارہ ابھی لائبریری میں شامل نہیں کیا گیا">نومبر</span>
-                <span class="disabled" title="یہ شمارہ ابھی لائبریری میں شامل نہیں کیا گیا">دسمبر</span>
-            </div>
-        </section>
+    <section class="year-section" id="y2025">
+      <div class="year-head">
+        <h2>سال 2025</h2>
+        <span class="year-count">7 شمارے دستیاب</span>
+      </div>
+      <div class="buttons">
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1EFXVkWCEMaV2MwutOsXs696uQ-eNYtEC/preview" data-view="https://drive.google.com/file/d/1EFXVkWCEMaV2MwutOsXs696uQ-eNYtEC/view" data-label="جنوری 2025">جنوری</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1EFXVkWCEMaV2MwutOsXs696uQ-eNYtEC/preview" data-view="https://drive.google.com/file/d/1EFXVkWCEMaV2MwutOsXs696uQ-eNYtEC/view" data-label="فروری 2025">فروری</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1EFXVkWCEMaV2MwutOsXs696uQ-eNYtEC/preview" data-view="https://drive.google.com/file/d/1EFXVkWCEMaV2MwutOsXs696uQ-eNYtEC/view" data-label="مارچ 2025">مارچ</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1EFXVkWCEMaV2MwutOsXs696uQ-eNYtEC/preview" data-view="https://drive.google.com/file/d/1EFXVkWCEMaV2MwutOsXs696uQ-eNYtEC/view" data-label="اپریل 2025">اپریل</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1Gqsvv6NdrMxxI7Rez_bK3odV4HW-LWj0/preview" data-view="https://drive.google.com/file/d/1Gqsvv6NdrMxxI7Rez_bK3odV4HW-LWj0/view" data-label="مئی 2025">مئی</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1Gqsvv6NdrMxxI7Rez_bK3odV4HW-LWj0/preview" data-view="https://drive.google.com/file/d/1Gqsvv6NdrMxxI7Rez_bK3odV4HW-LWj0/view" data-label="جون 2025">جون</button>
+        <button class="issue-btn" data-src="https://drive.google.com/file/d/1Gqsvv6NdrMxxI7Rez_bK3odV4HW-LWj0/preview" data-view="https://drive.google.com/file/d/1Gqsvv6NdrMxxI7Rez_bK3odV4HW-LWj0/view" data-label="جولائی 2025">جولائی</button>
+        <span class="issue-btn disabled" title="یہ شمارہ ابھی لائبریری میں شامل نہیں کیا گیا">اگست</span>
+        <span class="issue-btn disabled" title="یہ شمارہ ابھی لائبریری میں شامل نہیں کیا گیا">ستمبر</span>
+        <span class="issue-btn disabled" title="یہ شمارہ ابھی لائبریری میں شامل نہیں کیا گیا">اکتوبر</span>
+        <span class="issue-btn disabled" title="یہ شمارہ ابھی لائبریری میں شامل نہیں کیا گیا">نومبر</span>
+        <span class="issue-btn disabled" title="یہ شمارہ ابھی لائبریری میں شامل نہیں کیا گیا">دسمبر</span>
+      </div>
+    </section>
     </main>
 
     <footer>
         <p>جملہ حقوق محفوظ © 2025 شاہراہِ علم</p>
-        <p>تیار کردہ: عبدالسبحان — <a href="tel:9422849645">9422849645</a></p>
+        <p>تیار کردہ: عبدالصبحان — <a href="tel:9422849645">9422849645</a></p>
     </footer>
+
+    <div class="modal-overlay" id="readerModal">
+        <div class="modal-box">
+            <div class="modal-head">
+                <span id="modalTitle"></span>
+                <button id="modalClose" aria-label="بند کریں">×</button>
+            </div>
+            <div class="modal-frame-wrap">
+                <iframe id="modalFrame" src="" title="شمارہ"></iframe>
+            </div>
+            <div class="modal-foot">
+                <a id="modalOpenNew" href="#" target="_blank" rel="noopener">نئی ٹیب میں کھولیں / ڈاؤن لوڈ کریں</a>
+            </div>
+        </div>
+    </div>
 
     <button id="topBtn" aria-label="اوپر جائیں" title="اوپر جائیں">↑</button>
     <button id="installBtn">📲 ایپ انسٹال کریں</button>
 
     <script>
-        // اوپر جانے کا بٹن
-        const topBtn = document.getElementById("topBtn");
-        window.addEventListener("scroll", () => {
+        var modal = document.getElementById("readerModal");
+        var modalFrame = document.getElementById("modalFrame");
+        var modalTitle = document.getElementById("modalTitle");
+        var modalOpenNew = document.getElementById("modalOpenNew");
+
+        function openReader(src, viewUrl, label) {
+            modalFrame.src = src;
+            modalTitle.textContent = label;
+            modalOpenNew.href = viewUrl;
+            modal.classList.add("open");
+        }
+
+        function closeReader() {
+            modal.classList.remove("open");
+            modalFrame.src = "";
+        }
+
+        document.addEventListener("click", function (e) {
+            var btn = e.target.closest(".issue-btn[data-src]");
+            if (btn) {
+                openReader(btn.dataset.src, btn.dataset.view, btn.dataset.label);
+            }
+        });
+
+        document.getElementById("modalClose").addEventListener("click", closeReader);
+        modal.addEventListener("click", function (e) {
+            if (e.target === modal) closeReader();
+        });
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") closeReader();
+        });
+
+        document.getElementById("yearJump").addEventListener("change", function () {
+            if (this.value) {
+                document.getElementById(this.value).scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        });
+
+        document.getElementById("monthFilter").addEventListener("input", function () {
+            var q = this.value.trim();
+            document.querySelectorAll(".year-section").forEach(function (sec) {
+                var any = false;
+                sec.querySelectorAll(".buttons > *").forEach(function (el) {
+                    var match = !q || el.textContent.indexOf(q) > -1;
+                    el.style.display = match ? "" : "none";
+                    if (match) any = true;
+                });
+                sec.style.display = any ? "" : "none";
+            });
+        });
+
+        var topBtn = document.getElementById("topBtn");
+        window.addEventListener("scroll", function () {
             topBtn.style.display = window.scrollY > 400 ? "block" : "none";
         });
-        topBtn.addEventListener("click", () => {
+        topBtn.addEventListener("click", function () {
             window.scrollTo({ top: 0, behavior: "smooth" });
         });
 
-        // PWA انسٹال بٹن
-        let deferredInstallPrompt = null;
-        const installBtn = document.getElementById("installBtn");
-
-        window.addEventListener("beforeinstallprompt", (e) => {
+        var deferredInstallPrompt = null;
+        var installBtn = document.getElementById("installBtn");
+        window.addEventListener("beforeinstallprompt", function (e) {
             e.preventDefault();
             deferredInstallPrompt = e;
             installBtn.style.display = "block";
         });
-
-        installBtn.addEventListener("click", async () => {
+        installBtn.addEventListener("click", async function () {
             if (!deferredInstallPrompt) return;
             deferredInstallPrompt.prompt();
             await deferredInstallPrompt.userChoice;
             deferredInstallPrompt = null;
             installBtn.style.display = "none";
         });
-
-        window.addEventListener("appinstalled", () => {
+        window.addEventListener("appinstalled", function () {
             installBtn.style.display = "none";
         });
 
-        // Service Worker رجسٹر کرنا (آف لائن سپورٹ)
         if ("serviceWorker" in navigator) {
-            window.addEventListener("load", () => {
-                navigator.serviceWorker.register("service-worker.js").catch(() => {});
+            window.addEventListener("load", function () {
+                navigator.serviceWorker.register("service-worker.js").catch(function () {});
             });
         }
     </script>
